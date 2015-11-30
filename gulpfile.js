@@ -9,7 +9,7 @@ var elmInit = elm.init;
 gulp.task('elm.init', elmInit);
 
 gulp.task('elm', ['elm.init'], function () {
-  gulp.src('app/App.elm')
+  gulp.src('app/*.elm')
       .pipe(elm())
       .pipe(gulp.dest('.tmp'))
       .pipe(gulp.dest('dist'));

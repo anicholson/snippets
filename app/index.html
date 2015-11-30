@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>snippets</title>
+        <script src="/App.js"></script>
+        <script type="text/javascript">
+            function ready(fn) {
+                if (document.readyState != 'loading'){
+                    fn();
+                } else {
+                    document.addEventListener('DOMContentLoaded', fn);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="app" class="container-fluid"></div>
+
+        <script>
+            ready(function() {
+               var appContainer = document.getElementById('app');
+
+               Elm.embed(Elm.App, appContainer);
+            });
+        </script>
+    </body>
+</html>
