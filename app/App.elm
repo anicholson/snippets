@@ -14,22 +14,11 @@ A grab-bag of "oh, I should remember that!" moments, written in Elm.
 
 -}
 
+import Model exposing (Model, defaultModel)
 import Views
 import Updates
-import Model exposing (Model, defaultModel)
+
 import Html
 
-
-updates : Signal.Mailbox Updates.Update
-updates = Signal.mailbox Updates.NoOp
-
-appModel : Signal Model
-appModel =
-  let
-    applicationUpdates = updates.signal
-  in
-    Signal.foldp Updates.update Model.defaultModel applicationUpdates
-
 main : Signal Html.Html
-main = Signal.map Views.mainView appModel
-
+main = Signal.map Views.mainView Updates.appModel
