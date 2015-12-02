@@ -1,10 +1,10 @@
 module Views where
 
 import Styles exposing (flex, column, centered, appColors)
-import Model exposing (Model)
+import Model exposing (Model, Snippet)
 import Window
 
-import Html exposing (Html, a, div, h1, header, text, ul, li,  section)
+import Html exposing (Html, a, div, h1, header, text, pre, ul, li,  section)
 import Html.Attributes as Attributes exposing (href, class, style, id)
 
 import Css.Background as Background
@@ -13,21 +13,6 @@ import Css.Dimension  as Dimension
 import Css.Margin     as Margin
 
 import Bootstrap.Html as B
-
-square : Int ->  Html
-square sideLength =
-  let styles =
-    []
-      |> flex
-      |> centered
-      |> Margin.all 10 10 10 10
-      |> Text.color appColors.secondary
-      |> Background.color appColors.primary
-      |> Dimension.width sideLength
-      |> Dimension.height sideLength
-  in div
-    [ style styles ]
-    [ text <| toString sideLength ]
 
 navigationView: Model -> Html
 navigationView model =
@@ -53,11 +38,16 @@ headerView model =
            headline ]
 
 
+snippetView : Snippet -> Html
+snippetView snippet =
+    div [] [(h1 [] [text snippet.title]),
+             (div [] [ pre [ class "prettyprint linenums" ] [text snippet.content]])]
+
 bodyView: Model -> Html
 bodyView model =
   let width = model.window.width
   in
-    section [] <| List.map square [ 50, 60, 70, 80, 90 ]
+    section [] <| List.map snippetView model.snippets
 
 
 mainView : Model -> Html
