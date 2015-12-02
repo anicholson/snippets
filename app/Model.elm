@@ -1,4 +1,4 @@
-module Model (Model, defaultModel) where
+module Model (Model, Snippet, defaultModel) where
 
 {-|
 
@@ -68,7 +68,7 @@ defaultModel = {
     ,{ name = "Admin", state = defaultTabState }]}
   , snippets = [{
     title = "Example Snippet",
-    content = "The stuff that goes in the snippet",
+    content = "The stuff that goes in the snippet\n\nNow we have stuff on multiple lines.",
     tags = ["example"],
     referringURL = Nothing
   }]}
