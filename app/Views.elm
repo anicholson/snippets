@@ -40,8 +40,12 @@ headerView model =
 
 snippetView : Snippet -> Html
 snippetView snippet =
-    div [] [(h1 [] [text snippet.title]),
-             (div [] [ pre [ class "prettyprint linenums" ] [text snippet.content]])]
+    let title = h1 [] [ text snippet.title ]
+        tags = ul [] <| List.map (\item -> li [] [text item]) snippet.tags
+        content = pre [ class "prettyprint linenums" ] [ text snippet.content ]
+    in
+      div [] [title,
+              div [] [ content , tags]]
 
 bodyView: Model -> Html
 bodyView model =
